@@ -4,6 +4,10 @@ Change a value here and re-run `python scripts/build_all.py` to regenerate every
 Values come from the v1 plan (24N28P outrunner, 0.7 mm air gap). They are design values, not measured parts.
 """
 
+# FROZEN (2026-11-24): stator and rotor dimensions below are fixed by the owner for v1
+# (80 mm stator OD, 52 mm bore, tooth/slot geometry, 0.7 mm air gap, rotor rings and magnets).
+# Do not change them; test-stand and gearbox parts must fit around them.
+
 # --- Stator (24 slots, 1 mm mild steel laser-cut plates) ---
 SLOTS = 24
 STATOR_OD = 80.0

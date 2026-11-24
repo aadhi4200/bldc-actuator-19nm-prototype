@@ -42,6 +42,8 @@ Status: **Phase 1 not started.** These are design files. Nothing has been cut, b
 
 ## Key dimensions (from `scripts/params.py`)
 
+**Frozen for v1 (2026-11-24):** the stator and rotor dimensions below are fixed. Other parts (test stand, housing, gearbox) are designed around them.
+
 | Item | Value |
 |---|---|
 | Stator | 80 mm OD, 52 mm bore, 3.5 mm yoke, 24 teeth × 4.8 mm, slot depth 8.2 mm, slot opening 2.0 mm, slot area ≈32.8 mm² |

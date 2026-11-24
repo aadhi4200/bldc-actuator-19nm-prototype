@@ -1,6 +1,6 @@
 # Importing into Fusion 360
 
-All files are in **mm**. They are copies of the files in `../step` and `../dxf`; regenerate with `scripts/build_all.py`, which refreshes this folder too.
+All files are in **mm**. They are copies of the files in `../step` and `../dxf`; regenerate with `../scripts/build_all.py`, which refreshes this folder too.
 
 | File | Use in Fusion |
 |---|---|

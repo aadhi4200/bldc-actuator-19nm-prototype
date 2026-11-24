@@ -21,6 +21,7 @@ Status: **Phase 1 not started.** These are design files. Nothing has been cut, b
 | File | What | Qty to make |
 |---|---|---|
 | `dxf/bldc_v1_stator_plate_24N28P_80mm_ms1mm.dxf` | Stator lamination, 1 mm mild steel | 20 (18 + 2 spare) |
+| `dxf/bldc_v1_stator_plate_24N28P_80mm_ms1mm_x20_tabbed_sheet_351x434.dxf` | Optional: all 20 plates nested on one 351 × 434 mm sheet, held by 0.8 mm tabs on teeth 7 and 19. Snap out, file the stubs, true the stack OD (built by `scripts/build_tabbed_sheet.py`) | 1 sheet |
 | `dxf/bldc_v1_rotor_ring_final_93.4x87.4x20_ms.dxf` | Final rotor back-iron ring profile | 1 ring (lathe-turned solid, 20 mm long; DXF is the profile reference) |
 | `dxf/bldc_v1_rotor_ring_test_93.4x85.4x20_ms.dxf` | Test rotor back-iron ring profile | 1 ring (as above) |
 | `step/bldc_v1_stator_plate_24N28P_80mm_ms1mm.step` | One plate | |

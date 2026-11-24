@@ -6,6 +6,10 @@ All files are in **mm**. They are copies of the files in `../step` and `../dxf`;
 |---|---|
 | `bldc_v1_motor_core_final_rotor.step` | Full motor core with the final rotor: stator stack, ring and 28 magnets as separate components |
 | `bldc_v1_motor_core_test_rotor.step` | Same with the test rotor (56 block magnets) |
+| `bldc_v1_test_stand_assembly_test_rotor.step` | **Complete test stand** with the test rotor: base, hub, bearings, shaft, stator, rotor, bell |
+| `bldc_v1_test_stand_assembly_final_rotor.step` | Complete test stand with the final rotor |
+| `bldc_v1_test_stand_hub_51.95x30_nylon.step` | Hub, for printing |
+| `bldc_v1_rotor_bell_98.4_nylon.step` | Rotor bell, for printing |
 | `bldc_v1_stator_plate_24N28P_80mm_ms1mm.step` | One lamination as a body |
 | `bldc_v1_stator_plate_24N28P_80mm_ms1mm_sketch.dxf` | Stator outline to insert as an editable sketch |
 

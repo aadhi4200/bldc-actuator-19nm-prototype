@@ -4,4 +4,4 @@ Not started.
 
 Requirements: 9:1, ≥19 Nm peak output plus shock margin, ≥93 % efficiency, low backlash for arm joints, compact, mates with the 80 mm v1 motor.
 
-Layout `TBD`: single-stage planetary, two-stage planetary (3:1 × 3:1) or cycloidal. See [Phase 2 notes](https://github.com/aadhi4200/engineering-assistant/blob/main/projects/electronics/bldc-actuator/PHASE2_GEARBOX.md).
+Direction: **cycloidal drive** (9-lobe disc, 10 ring pins, 2 discs at 180°). Single-stage planetary is the fallback. Starts after Phase 1 is complete. See [Phase 2 notes](https://github.com/aadhi4200/engineering-assistant/blob/main/projects/electronics/bldc-actuator/PHASE2_GEARBOX.md).

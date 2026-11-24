@@ -1,4 +1,4 @@
-# DIY High-Torque BLDC Actuator (9:1, 19 Nm): CAD
+# BLDC Actuator 19 Nm Prototype (9:1)
 
 CAD and design files for a DIY robotic actuator: a custom BLDC motor, a 9:1 gearbox and an FOC controller, for precision robot arm joints. Developed in three phases, one folder each.
 

@@ -51,6 +51,9 @@ Tolerances: default ISO 2768-m is too loose for the bearing fits. Send each part
 - 3D sweep: 24 input angles × 17 part pairs → no contact (`scripts/sweep3d.py`).
 
 ## Files
+
+For Fusion 360: [`fusion360_import/`](fusion360_import/README.md) has the assembly and every machined part, with a parts table.
+
 ```
 step/1_assemblies/act_v2_assembly_flipped_motor_cycloidal.step   view only
 step/4_machined/act_v2_01_housing_pin_ring.step

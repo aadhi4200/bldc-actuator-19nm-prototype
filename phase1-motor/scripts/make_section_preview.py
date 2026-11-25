@@ -26,4 +26,5 @@ ax.set_xlim(-70,70); ax.set_ylim(-20,40); ax.set_aspect("equal"); ax.grid(alpha=
 ax.set_xlabel("x (mm)"); ax.set_ylabel("z (mm)")
 ax.set_title("BLDC v1 test stand: section through the motor axis (test rotor)")
 h,l=ax.get_legend_handles_labels(); ax.legend([a for a,b in zip(h,l) if b],[b for b in l if b],fontsize=7,loc="upper right",ncol=2)
-fig.savefig("../previews/bldc_v1_test_stand_section.png",dpi=110,bbox_inches="tight")
+from paths import PREV
+fig.savefig(str(PREV / "bldc_v1_test_stand_section.png"),dpi=110,bbox_inches="tight")

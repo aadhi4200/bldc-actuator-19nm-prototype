@@ -4,16 +4,11 @@ plus full assemblies with the test and final rotors.
 Usage (from the repo root):  python phase1-motor/scripts/build_test_stand.py
 Coordinates match build_all.py: mm, Z = motor axis, origin = centre of the stator stack's bottom face.
 """
-import shutil
-from pathlib import Path
-
 import cadquery as cq
 
 import params as P
 from build_all import (NAMES, stator_solid, ring, arc_magnet, block_magnet, block_offset)
-
-ROOT = Path(__file__).resolve().parent.parent
-STEP, F360 = ROOT / "step", ROOT / "fusion360_import"
+from paths import step, to_f360
 
 # ---------------------------------------------------------------- test stand parameters
 BRG_ID, BRG_OD, BRG_W = 10.0, 26.0, 8.0        # 6000ZZ
@@ -149,9 +144,11 @@ def main():
              "circlip": circlip(), "base": base_plate()}
     brg_up = bearing(UPPER_BRG_TOP - BRG_W)
     brg_lo = bearing(LOWER_BRG_BOT)
+    where = {"hub": "print", "bell": "print", "shaft": "machined", "spacer": "machined",
+             "base": "machined", "circlip": "bought"}
     for k, v in parts.items():
-        cq.exporters.export(v, str(STEP / f"{PART_NAMES[k]}.step"))
-    cq.exporters.export(brg_up, str(STEP / f"{PART_NAMES['bearing']}.step"))
+        cq.exporters.export(v, str(step(where[k], PART_NAMES[k])))
+    cq.exporters.export(brg_up, str(step("bought", PART_NAMES["bearing"])))
 
     stack = stator_solid(P.STACK_L)
     ring_f = ring(P.ROTOR_RING_OD, P.FINAL_RING_ID, P.RING_LENGTH, RING_Z0)
@@ -180,10 +177,10 @@ def main():
             pole = idx // per
             nm = f"magnet_P{pole + 1:02d}_{'N' if pole % 2 == 0 else 'S'}" + ("" if per == 1 else f"_{idx % per + 1}")
             a.add(m, name=nm, color=red if pole % 2 == 0 else blue)
-        a.export(str(STEP / f"{PART_NAMES[key]}.step"))
-        shutil.copy(STEP / f"{PART_NAMES[key]}.step", F360 / f"{PART_NAMES[key]}.step")
-    shutil.copy(STEP / f"{PART_NAMES['hub']}.step", F360 / f"{PART_NAMES['hub']}.step")
-    shutil.copy(STEP / f"{PART_NAMES['bell']}.step", F360 / f"{PART_NAMES['bell']}.step")
+        a.export(str(step("assemblies", PART_NAMES[key])))
+        to_f360(step("assemblies", PART_NAMES[key]), "assemblies")
+    to_f360(step("print", PART_NAMES["hub"]), "print")
+    to_f360(step("print", PART_NAMES["bell"]), "print")
 
     print(f"shaft length {shaft_len:.1f} mm (z {SHAFT_BOT:.1f} .. {SHAFT_TOP:.1f})")
     print(f"hub height {HUB_TOP - HUB_BOTTOM:.1f} mm, base plate top at z {HUB_BOTTOM:.1f}")

@@ -8,16 +8,12 @@ Usage (from the repo root): python phase1-motor/scripts/build_magnet_jig.py
 Coordinates match the other parts: ring z = -1..19, magnets z = -1..19.
 """
 import math
-import shutil
-from pathlib import Path
 
 import cadquery as cq
 
 import params as P
-from build_all import ring, block_magnet, block_offset
-
-ROOT = Path(__file__).resolve().parent.parent
-STEP, F360 = ROOT / "step", ROOT / "fusion360_import"
+from build_all import block_offset
+from paths import step, to_f360
 NAME = "bldc_v1_magnet_jig_test_rotor_28pocket_print"
 
 RING_Z0 = (P.STACK_L - P.RING_LENGTH) / 2          # -1
@@ -56,8 +52,8 @@ def jig():
 
 def main():
     j = jig()
-    cq.exporters.export(j, str(STEP / f"{NAME}.step"))
-    shutil.copy(STEP / f"{NAME}.step", F360 / f"{NAME}.step")
+    cq.exporters.export(j, str(step("print", NAME)))
+    to_f360(step("print", NAME), "print")
     print(f"{NAME}.step  finger r {FINGER_RI:.2f}..{FINGER_RO:.2f}, pocket {POCKET_W} mm, "
           f"finger height {FINGER_H} mm")
     return j

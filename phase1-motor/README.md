@@ -11,36 +11,55 @@ Status: **Phase 1 not started.** These are design files. Nothing has been cut, b
 |---|---|
 | `dxf/` | Laser-cut files: DXF R12, `LINE` + `ARC`/`CIRCLE` only, one layer `CUT`, mm, no reference geometry |
 | `dxf/backup_flat/` | Same outlines with arcs split into 0.5° straight lines, for viewers that misread arcs |
-| `step/` | 3D models: single parts and two motor-core assemblies |
-| `fusion360_import/` | Ready-to-import copies for Fusion 360, plus [import steps](fusion360_import/README.md) |
-| `previews/` | Top views with the air-gap detail |
-| `animation/` | `bldc_v1_rotor_flux_animation.gif` (shown in the main README) and `.html` (interactive: download and open in a browser), built by `scripts/make_animation_gif.py` |
+| `step/1_assemblies/` | Full test stand (test and final rotor) and motor core only (test and final rotor) |
+| `step/2_print/` | Parts to 3D print |
+| `step/3_laser_cut/` | Stator plate and the 18 mm stack |
+| `step/4_machined/` | Rotor rings, shaft, spacer, base plate |
+| `step/5_bought/` | Bearings, circlip, magnets (for reference in assemblies) |
+| `fusion360_import/` | Only what you open or print in Fusion 360, plus [import steps](fusion360_import/README.md) |
+| `previews/` | Top views, test-stand section, magnet jig |
+| `animation/` | `bldc_v1_rotor_flux_animation.gif` (shown in the main README) and `.html` (interactive: download and open in a browser) |
 | `scripts/` | Generator: every file above is rebuilt from `params.py` |
 
 ## Files
 
-| File | What | Qty to make |
+### Laser cut (order these)
+
+| File | What | Qty |
 |---|---|---|
-| `dxf/bldc_v1_stator_plate_24N28P_80mm_ms1mm.dxf` | Stator lamination, 1 mm mild steel | 20 (18 + 2 spare) |
-| `dxf/bldc_v1_stator_plate_24N28P_80mm_ms1mm_x20_tabbed_sheet_351x434.dxf` | Optional: all 20 plates nested on one 351 × 434 mm sheet, held by 0.8 mm tabs on teeth 7 and 19. Snap out, file the stubs, true the stack OD (built by `scripts/build_tabbed_sheet.py`) | 1 sheet |
-| `dxf/bldc_v1_rotor_ring_final_93.4x87.4x20_ms.dxf` | Final rotor back-iron ring profile | 1 ring (lathe-turned solid, 20 mm long; DXF is the profile reference) |
-| `dxf/bldc_v1_rotor_ring_test_93.4x85.4x20_ms.dxf` | Test rotor back-iron ring profile | 1 ring (as above) |
-| `step/bldc_v1_stator_plate_24N28P_80mm_ms1mm.step` | One plate | |
-| `step/bldc_v1_stator_stack_24N28P_80mm_18mm.step` | 18 mm stack as one solid | |
-| `step/bldc_v1_rotor_ring_final_93.4x87.4x20_ms.step` / `..._test_93.4x85.4x20_ms.step` | Rotor rings | |
-| `step/bldc_v1_magnet_arc_final_3mm_x28.step` | One final arc magnet (N48SH preferred, N42SH min) | 28 |
-| `step/bldc_v1_magnet_block_test_10x5x2_N35_x56.step` | One test block magnet | 56 |
-| `step/bldc_v1_motor_core_final_rotor.step` | Stack + final ring + 28 arc magnets (named components) | |
-| `step/bldc_v1_motor_core_test_rotor.step` | Stack + test ring + 56 block magnets (named components) | |
-| `step/bldc_v1_test_stand_assembly_test_rotor.step` | **Full test stand**: base plate, hub, 2 × 6000ZZ, circlip, shaft, spacer, stator, test rotor, bell | |
-| `step/bldc_v1_test_stand_assembly_final_rotor.step` | Same with the final rotor | |
-| `step/bldc_v1_test_stand_hub_51.95x30_nylon.step` | Hub: stator seat, key ribs, 2 bearing bores, M4 heat-set insert holes (print in MJF nylon) | 1 |
-| `step/bldc_v1_rotor_bell_98.4_nylon.step` | Rotor bell: holds the ring on a bottom lip, M3 set-screw boss (print in nylon) | 1 |
-| `step/bldc_v1_test_stand_base_plate_130x130x6.step` | Base plate: shaft clearance hole, 4 × M4 counterbored on 44 PCD, wire hole, 4 × Ø5.5 corner holes | 1 |
-| `step/bldc_v1_shaft_10x49.5_steel.step` | Ø10 × 49.5 mm steel shaft with DIN 471 groove and set-screw flat | 1 |
-| `step/bldc_v1_spacer_14x10x8.step` | Spacer between the upper bearing inner race and the bell | 1 |
-| `step/bldc_v1_magnet_jig_test_rotor_28pocket_print.step` | **Magnet gluing jig** for the N35 test rotor: 28 pockets with N / S marks, removable after the epoxy cures (print in PLA or PETG) | 1 |
-| `step/bldc_v1_bearing_6000ZZ_10x26x8.step`, `step/bldc_v1_circlip_DIN471_10.step` | Bought parts, for reference | 2, 1 |
+| `dxf/bldc_v1_stator_plate_24N28P_80mm_ms1mm_x20_tabbed_sheet_351x434.dxf` | **Sent to Robu for a quote:** 20 stator plates on one 351 × 434 mm sheet, 0.8 mm tabs on teeth 7 and 19. Snap out, file the stubs, true the stack OD | 1 sheet |
+| `dxf/bldc_v1_stator_plate_24N28P_80mm_ms1mm.dxf` | Single stator plate, 1 mm mild steel | 20 (18 + 2 spare) if not tabbed |
+| `dxf/bldc_v1_rotor_ring_final_93.4x87.4x20_ms.dxf` / `..._test_93.4x85.4x20_ms.dxf` | Rotor ring profiles (rings are lathe-turned solid; DXF is the profile reference) | 1 each |
+
+### 3D print (`step/2_print/`)
+
+| File | What | Material |
+|---|---|---|
+| `bldc_v1_test_stand_hub_51.95x30_nylon.step` | Hub: stator seat with key ribs, 2 bearing bores, M4 heat-set insert holes | MJF nylon |
+| `bldc_v1_rotor_bell_98.4_nylon.step` | Rotor bell: holds the ring on a bottom lip, M3 set-screw boss | Nylon |
+| `bldc_v1_magnet_jig_test_rotor_28pocket_print.step` | Magnet gluing jig for the N35 test rotor (removable) | PLA or PETG |
+
+### Machined (`step/4_machined/`)
+
+| File | What |
+|---|---|
+| `bldc_v1_rotor_ring_test_93.4x85.4x20_ms.step` | Test rotor ring, solid mild steel |
+| `bldc_v1_rotor_ring_final_93.4x87.4x20_ms.step` | Final rotor ring, solid mild steel |
+| `bldc_v1_shaft_10x49.5_steel.step` | Ø10 × 49.5 mm shaft, DIN 471 groove, set-screw flat |
+| `bldc_v1_spacer_14x10x8.step` | Spacer between the upper bearing inner race and the bell |
+| `bldc_v1_test_stand_base_plate_130x130x6.step` | Base plate (aluminium or steel) |
+
+### Bought (`step/5_bought/`)
+
+2 × 6000ZZ bearings, 1 × DIN 471 circlip for Ø10, 56 × N35 10×5×2 blocks (test), 28 × arc magnets N48SH (final, custom order).
+
+### Assemblies (`step/1_assemblies/`)
+
+| File | What |
+|---|---|
+| `bldc_v1_test_stand_assembly_test_rotor.step` | **Complete test stand with the N35 test rotor** (named components) |
+| `bldc_v1_test_stand_assembly_final_rotor.step` | Complete test stand with the final rotor |
+| `bldc_v1_motor_core_test_rotor.step` / `..._final_rotor.step` | Stator stack + ring + magnets only |
 
 ## Key dimensions (from `scripts/params.py`)
 
@@ -92,9 +111,11 @@ mm. Z = motor axis. Origin = centre of the stator stack's bottom face (stack z =
 ```bash
 # Windows PowerShell, WSL2 or Ubuntu (Python 3.10+), from the repo root
 pip install -r phase1-motor/scripts/requirements.txt
-python phase1-motor/scripts/build_all.py          # motor core, DXF, previews
-python phase1-motor/scripts/build_test_stand.py   # test stand parts + assemblies
-python phase1-motor/scripts/build_tabbed_sheet.py # optional 20-plate tabbed sheet
+python phase1-motor/scripts/build_all.py               # everything: DXF, all STEP, Fusion 360 folder
+python phase1-motor/scripts/check_test_stand.py        # optional: overlap and clearance check
+python phase1-motor/scripts/make_section_preview.py    # optional: preview images
+python phase1-motor/scripts/make_jig_preview.py
+python phase1-motor/scripts/make_animation_gif.py
 ```
 
 ## Not included yet

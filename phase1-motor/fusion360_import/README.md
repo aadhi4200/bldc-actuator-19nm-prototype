@@ -1,24 +1,21 @@
 # Importing into Fusion 360
 
-All files are in **mm**. They are copies of the files in `../step` and `../dxf`; regenerate with `../scripts/build_all.py`, which refreshes this folder too.
+Only the files you open or print. All in **mm**, copies of the files in `../step` and `../dxf`; `../scripts/build_all.py` regenerates this folder too. Everything else (single parts, motor core only, bought parts) is in `../step/`.
 
-| File | Use in Fusion |
+| Folder / file | Use in Fusion |
 |---|---|
-| `bldc_v1_motor_core_final_rotor.step` | Full motor core with the final rotor: stator stack, ring and 28 magnets as separate components |
-| `bldc_v1_motor_core_test_rotor.step` | Same with the test rotor (56 block magnets) |
-| `bldc_v1_test_stand_assembly_test_rotor.step` | **Complete test stand** with the test rotor: base, hub, bearings, shaft, stator, rotor, bell |
-| `bldc_v1_test_stand_assembly_final_rotor.step` | Complete test stand with the final rotor |
-| `bldc_v1_test_stand_hub_51.95x30_nylon.step` | Hub, for printing |
-| `bldc_v1_rotor_bell_98.4_nylon.step` | Rotor bell, for printing |
-| `bldc_v1_magnet_jig_test_rotor_28pocket_print.step` | Magnet gluing jig, for printing |
-| `bldc_v1_stator_plate_24N28P_80mm_ms1mm.step` | One lamination as a body |
-| `bldc_v1_stator_plate_24N28P_80mm_ms1mm_sketch.dxf` | Stator outline to insert as an editable sketch |
+| `1_assemblies/bldc_v1_test_stand_assembly_test_rotor.step` | **Start here.** Complete test stand with the N35 test rotor: base plate, hub, 2 × 6000ZZ, circlip, shaft, spacer, stator stack, rotor ring, 56 magnets, bell, each a named component |
+| `1_assemblies/bldc_v1_test_stand_assembly_final_rotor.step` | Same with the final rotor (28 arc magnets) |
+| `2_print_parts/bldc_v1_test_stand_hub_51.95x30_nylon.step` | Hub, for printing (MJF nylon) |
+| `2_print_parts/bldc_v1_rotor_bell_98.4_nylon.step` | Rotor bell, for printing (nylon) |
+| `2_print_parts/bldc_v1_magnet_jig_test_rotor_28pocket_print.step` | Magnet gluing jig, for printing (PLA or PETG) |
+| `3_sketches/bldc_v1_stator_plate_24N28P_80mm_ms1mm_sketch.dxf` | Stator outline to insert as an editable sketch |
 
 ## STEP (assemblies or parts)
 
 1. **File → Open → Open from my computer…**, pick the `.step` file. Fusion uploads and translates it (wait for the Data Panel to finish).
-2. Open the translated design. Each part appears as a component in the Browser (`stator_stack`, `rotor_ring`, `magnet_P01_N`, …).
-3. To use it inside another design: **Insert → Insert into current design** from the Data Panel, or right-click the design → **Insert into current design**.
+2. Open the translated design. Each part appears as a component in the Browser (`hub`, `shaft`, `stator_stack`, `rotor_bell`, `magnet_P01_N`, …).
+3. To use it inside another design: right-click it in the Data Panel → **Insert into current design**.
 
 Alternative: drag the file into the **Data Panel** → **Upload**.
 
@@ -31,4 +28,8 @@ Alternative: drag the file into the **Data Panel** → **Upload**.
 
 ## Orientation
 
-Z = motor axis, origin at the centre of the stack's bottom face, tooth 1 on +X. Fusion's default is Y-up: if the motor lies on its side, pick **Z up** under Preferences → General → Default modeling orientation before importing, or rotate the component.
+Z = motor axis, origin at the centre of the stator stack's bottom face, tooth 1 on +X. Fusion's default is Y-up: if the model lies on its side, set **Z up** under Preferences → General → Default modeling orientation before importing, or rotate the component.
+
+## Replacing an older import
+
+If you imported earlier versions (from the old flat `step/` or `fusion360_import/` folders), delete them in Fusion and import these. The geometry of the stator, rotor and magnets is unchanged (frozen); the test stand parts are the current design.

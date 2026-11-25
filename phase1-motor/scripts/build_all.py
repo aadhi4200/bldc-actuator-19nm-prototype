@@ -8,17 +8,14 @@ Coordinates (all files): mm, Z = motor axis, origin = centre of the stator stack
 tooth 1 on +X, teeth numbered counter-clockwise seen from +Z.
 """
 import math
-import shutil
 from pathlib import Path
 
 import cadquery as cq
 import ezdxf
 
 import params as P
+from paths import DXF, DXF_FLAT, PREV, step, to_f360
 
-ROOT = Path(__file__).resolve().parent.parent
-DXF, DXF_FLAT, STEP, F360, PREV = (ROOT / "dxf", ROOT / "dxf" / "backup_flat", ROOT / "step",
-                                   ROOT / "fusion360_import", ROOT / "previews")
 
 NAMES = {
     "plate": "bldc_v1_stator_plate_24N28P_80mm_ms1mm",
@@ -219,7 +216,7 @@ def previews():
 
 
 def main():
-    for d in (DXF, DXF_FLAT, STEP, F360, PREV):
+    for d in (DXF, DXF_FLAT, PREV):
         d.mkdir(parents=True, exist_ok=True)
 
     # DXF (cut files: R12, LINE + ARC/CIRCLE only, single layer CUT, no reference geometry)
@@ -243,12 +240,12 @@ def main():
     blocks = [block_magnet(k * pitch, blk_z0 + j * P.BLOCK_L)
               for k in range(P.POLES) for j in range(P.BLOCKS_PER_POLE)]
 
-    cq.exporters.export(plate, str(STEP / f"{NAMES['plate']}.step"))
-    cq.exporters.export(stack, str(STEP / f"{NAMES['stack']}.step"))
-    cq.exporters.export(rf, str(STEP / f"{NAMES['ring_final']}.step"))
-    cq.exporters.export(rt, str(STEP / f"{NAMES['ring_test']}.step"))
-    cq.exporters.export(arcs[0], str(STEP / f"{NAMES['arc_magnet']}.step"))
-    cq.exporters.export(blocks[0], str(STEP / f"{NAMES['block_magnet']}.step"))
+    cq.exporters.export(plate, str(step("laser_cut", NAMES["plate"])))
+    cq.exporters.export(stack, str(step("laser_cut", NAMES["stack"])))
+    cq.exporters.export(rf, str(step("machined", NAMES["ring_final"])))
+    cq.exporters.export(rt, str(step("machined", NAMES["ring_test"])))
+    cq.exporters.export(arcs[0], str(step("bought", NAMES["arc_magnet"])))
+    cq.exporters.export(blocks[0], str(step("bought", NAMES["block_magnet"])))
 
     # Assemblies with named components (Fusion 360 imports each as a component)
     steel, n_col, s_col = cq.Color(0.55, 0.55, 0.6), cq.Color(0.85, 0.15, 0.15), cq.Color(0.15, 0.3, 0.85)
@@ -262,12 +259,9 @@ def main():
             col = n_col if pole % 2 == 0 else s_col
             nm = f"magnet_P{pole + 1:02d}_{'N' if pole % 2 == 0 else 'S'}" + ("" if per == 1 else f"_{idx % per + 1}")
             a.add(m, name=nm, color=col)
-        a.export(str(STEP / f"{NAMES[key]}.step"))
+        a.export(str(step("assemblies", NAMES[key])))
 
-    # Fusion 360 import folder: ready-to-drag copies
-    for key in ("asm_final", "asm_test", "plate"):
-        shutil.copy(STEP / f"{NAMES[key]}.step", F360 / f"{NAMES[key]}.step")
-    shutil.copy(DXF / f"{NAMES['plate']}.dxf", F360 / f"{NAMES['plate']}_sketch.dxf")
+    to_f360(DXF / f"{NAMES['plate']}.dxf", "sketches", f"{NAMES['plate']}_sketch.dxf")
 
     previews()
 
@@ -283,5 +277,15 @@ def main():
     print(f"min air gap, test blocks {block_offset() - P.R_OD:.3f} mm; final arcs {P.AIR_GAP:.2f} mm")
 
 
-if __name__ == "__main__":
+def build_everything():
+    """Motor core, test stand, magnet jig and tabbed sheet in one run."""
     main()
+    import build_test_stand, build_magnet_jig, build_tabbed_sheet
+    build_test_stand.main()
+    build_magnet_jig.main()
+    body, w, h = build_tabbed_sheet.build()
+    build_tabbed_sheet.write_r12(body, DXF / f"{NAMES['plate']}_x20_tabbed_sheet_{w:.0f}x{h:.0f}.dxf")
+
+
+if __name__ == "__main__":
+    build_everything()

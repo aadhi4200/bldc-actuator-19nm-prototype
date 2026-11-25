@@ -9,6 +9,7 @@ import cadquery as cq
 import params as P
 import build_magnet_jig as J
 from build_all import ring, block_magnet
+from paths import PREV
 
 
 def draw_slice(ax, wp, z, col, max_area=None):
@@ -49,7 +50,7 @@ def main():
         ax.axis("off")
         ax.set_xlim(lim[0], lim[1])
         ax.set_ylim(lim[2], lim[3])
-    fig.savefig("../previews/bldc_v1_magnet_jig_top_view.png", dpi=110, bbox_inches="tight")
+    fig.savefig(str(PREV / "bldc_v1_magnet_jig_top_view.png"), dpi=110, bbox_inches="tight")
 
 
 if __name__ == "__main__":

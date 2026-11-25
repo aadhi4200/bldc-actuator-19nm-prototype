@@ -13,6 +13,7 @@ import ezdxf
 
 import params as P
 from build_all import stator_solid, NAMES
+from paths import DXF
 
 COLS, ROWS = 4, 5
 GAP = 3.0          # gap between plates and between plates and frame (= tab length)
@@ -78,6 +79,6 @@ def write_r12(body, path):
 
 if __name__ == "__main__":
     body, w, h = build()
-    out = ROOT / "dxf" / f"{NAMES['plate']}_x20_tabbed_sheet_{w:.0f}x{h:.0f}.dxf"
+    out = DXF / f"{NAMES['plate']}_x20_tabbed_sheet_{w:.0f}x{h:.0f}.dxf"
     write_r12(body, out)
     print(out.name, f"sheet {w:.0f} x {h:.0f} mm")

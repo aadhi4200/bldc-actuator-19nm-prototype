@@ -23,7 +23,7 @@ NAMES = {
     "ring_final": "bldc_v1_rotor_ring_final_93.4x87.4x20_ms",
     "ring_test": "bldc_v1_rotor_ring_test_93.4x85.4x20_ms",
     "arc_magnet": "bldc_v1_magnet_arc_final_3mm_x28",
-    "block_magnet": "bldc_v1_magnet_block_test_10x5x2_N35_x56",
+    "block_magnet": f"bldc_v1_magnet_block_test_{P.BLOCK_L:g}x{P.BLOCK_W:g}x{P.BLOCK_T:g}_N35_x{P.POLES * P.BLOCKS_PER_POLE}",
     "asm_final": "bldc_v1_motor_core_final_rotor",
     "asm_test": "bldc_v1_motor_core_test_rotor",
 }

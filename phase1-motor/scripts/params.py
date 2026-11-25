@@ -34,9 +34,9 @@ ARC_MAG_L = 18.0
 ARC_POLE_ARC = 0.85         # fraction of pole pitch
 FINAL_RING_ID = 87.4
 
-# Test rotor: 56 x 10x5x2 mm N35 blocks (2 per pole axially), bench only
-BLOCK_L, BLOCK_W, BLOCK_T = 10.0, 5.0, 2.0   # axial, tangential, radial
-BLOCKS_PER_POLE = 2
+# Test rotor: 28 x 20x5x2 mm N35 blocks (1 per pole), bench only (changed 2026-11-25 from 56 x 10x5x2)
+BLOCK_L, BLOCK_W, BLOCK_T = 20.0, 5.0, 2.0   # axial, tangential, radial
+BLOCKS_PER_POLE = 1
 TEST_RING_ID = 85.4
 
 STEEL_DENSITY = 7.85e-3     # g/mm^3 (mild steel)

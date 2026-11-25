@@ -12,7 +12,7 @@ All files in **mm**, copies of `../step/`. Units: mm. Z = actuator axis; the out
 | `2_machined_parts/act_v2_05_eccentric_cam_v2.step` | Eccentric cam with the Ø38 rotor flange | 1 | Al 7075-T6 |
 | `2_machined_parts/act_v2_06_motor_can.step` | Motor can, Ø106 | 1 | Al 6061-T6 |
 | `2_machined_parts/act_v2_07_rotor_one_piece_steel.step` | **Final rotor**, one piece: cup + hub + Ø10 shaft, Ø87.4 magnet bore | 1 | EN8 / C45 steel |
-| `2_machined_parts/act_v2_07b_rotor_one_piece_TEST_85.4bore.step` | **Test rotor**, same with Ø85.4 bore for 56 × 10×5×2 N35 blocks | 1 | EN8 / C45 steel |
+| `2_machined_parts/act_v2_07b_rotor_one_piece_TEST_85.4bore.step` | **Test rotor**, same with Ø85.4 bore for 28 × 20×5×2 N35 blocks | 1 | EN8 / C45 steel |
 | `2_machined_parts/act_v2_10_stator_hub.step` | Stator hub, Ø51.9 seat, bores for 2 × 6000 | 1 | Al 6061-T6 |
 | `2_machined_parts/act_v2_11_back_plate.step` | Back plate (stator hub, encoder PCB) | 1 | Al 6061-T6 |
 | `2_machined_parts/act_v2_12_back_cover.step` | Back cover | 1 | Al 6061-T6 |

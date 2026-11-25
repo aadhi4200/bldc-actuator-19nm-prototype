@@ -28,7 +28,7 @@ Status: **design done (CAD, drawings, clearance checks). Nothing machined or tes
 - Every screw can be reached in the assembly order below.
 
 ## Rotor (one machined part)
-EN8 / C45 steel: back-iron cup Ø93.4, magnet bore Ø87.4 × 22, Ø38 boss with spigot recess and 5 counterbored M3 holes, **integral Ø10 h6 shaft** (8 mm pilot into the cam, 2 × 6000 journals and encoder magnet above). ≈326 g + ≈91 g magnets. Test rotor `07b` is the same with a Ø85.4 bore for the 10×5×2 N35 blocks.
+EN8 / C45 steel: back-iron cup Ø93.4, magnet bore Ø87.4 × 22, Ø38 boss with spigot recess and 5 counterbored M3 holes, **integral Ø10 h6 shaft** (8 mm pilot into the cam, 2 × 6000 journals and encoder magnet above). ≈326 g + ≈91 g magnets. Test rotor `07b` is the same with a Ø85.4 bore for 28 × 20×5×2 N35 blocks (one per pole).
 
 ![One-piece rotor](previews/act_v2_rotor_one_piece.png)
 

@@ -5,7 +5,7 @@ CAD for the v1 motor of the DIY 9:1, 19 Nm BLDC actuator: a 24N28P outrunner wit
 Design record: [ADR 0002 in engineering-assistant](https://github.com/aadhi4200/engineering-assistant/blob/main/decisions/0002-bldc-v1-motor-design.md).
 Status: **Phase 1 not started.** These are design files. Nothing has been cut, built or measured.
 
-> **Actuator v2 supersedes the v1 test stand (2026-11-25).** The motor is now flipped and bolts to the cycloidal gearbox. The rotor is **one machined steel part** (back-iron cup + hub + Ø10 shaft): `act_v2_07_rotor_one_piece_steel` (final, Ø87.4 bore) and `act_v2_07b_rotor_one_piece_TEST_85.4bore` (test, Ø85.4 bore for the 10×5×2 N35 blocks), plus `act_v2_10_stator_hub` and `act_v2_11_back_plate`, all in [`phase2-gearbox/step/4_machined/`](../phase2-gearbox/README.md).
+> **Actuator v2 supersedes the v1 test stand (2026-11-25).** The motor is now flipped and bolts to the cycloidal gearbox. The rotor is **one machined steel part** (back-iron cup + hub + Ø10 shaft): `act_v2_07_rotor_one_piece_steel` (final, Ø87.4 bore) and `act_v2_07b_rotor_one_piece_TEST_85.4bore` (test, Ø85.4 bore for 28 × 20×5×2 N35 blocks), plus `act_v2_10_stator_hub` and `act_v2_11_back_plate`, all in [`phase2-gearbox/step/4_machined/`](../phase2-gearbox/README.md).
 > **Still current here:** stator plate DXFs (tabbed sheet and single plate), stator stack, magnet models and magnet spec, winding, key dimensions, previews and animation.
 > **Superseded, kept for reference:** the separate rotor rings, printed hub and bell, Ø10 × 49.5 shaft, spacer, base plate, the v1 test-stand assemblies and the magnet jig (made for the separate ring; the v2 rotor is a cup with a floor).
 
@@ -55,7 +55,7 @@ Status: **Phase 1 not started.** These are design files. Nothing has been cut, b
 
 ### Bought (`step/5_bought/`)
 
-2 × 6000ZZ bearings, 1 × DIN 471 circlip for Ø10, 56 × N35 10×5×2 blocks (test), 28 × arc magnets N48SH (final, custom order).
+2 × 6000ZZ bearings, 1 × DIN 471 circlip for Ø10, 28 × N35 20×5×2 blocks (test; buy 30–35), 28 × arc magnets N48SH (final, custom order).
 
 ### Assemblies (`step/1_assemblies/`)
 
@@ -75,22 +75,24 @@ Status: **Phase 1 not started.** These are design files. Nothing has been cut, b
 | Alignment notches | 3 × 1.2 mm in the bore under teeth 1 and 13 |
 | Stack | 18 × 1 mm, ≈283 g mild steel (calculated) |
 | Final rotor | 28 arc magnets, 3 mm thick, 18 mm long, inner R 40.7 mm, 85 % pole arc; ring 93.4 × 87.4 × 20 mm |
-| Test rotor | 56 × 10×5×2 mm N35 blocks, 2 per pole axially; ring 93.4 × 85.4 × 20 mm |
+| Test rotor | 28 × 20×5×2 mm N35 blocks, 1 per pole; ring 93.4 × 85.4 × 20 mm (v2: rotor 07b, Ø85.4 × 22 bore) |
 | Air gap | 0.70 mm (final arcs); 0.63 mm minimum with the flat test blocks, whose corners touch the ring bore |
 
 ## Magnets: what to buy and how they sit
 
 | | Test rotor | Final rotor |
 |---|---|---|
-| Magnet | **10 × 5 × 2 mm N35 block** (length × width × thickness) | Arc, **N48SH** (N42SH minimum), custom order |
-| Quantity | **56** (2 per pole, stacked axially) + spares: buy 60–100 | **28** + spares |
-| Orientation | 10 mm along the motor axis, 5 mm around the circle, 2 mm radial (magnetised through the 2 mm) | 18 mm along the axis, 10.93° of arc (≈8.3 mm), 3 mm radial (magnetised radially) |
+| Magnet | **20 × 5 × 2 mm N35 block** (length × width × thickness) | Arc, **N48SH** (N42SH minimum), custom order |
+| Quantity | **28** (1 per pole) + spares: buy 30–35 | **28** + spares |
+| Orientation | 20 mm along the motor axis, 5 mm around the circle, 2 mm radial (magnetised through the 2 mm) | 18 mm along the axis, 10.93° of arc (≈8.3 mm), 3 mm radial (magnetised radially) |
 | Ring / bore | Ø85.4 | Ø87.4 |
 | Inner face | ≈R40.63 at the block centre (flat block in a round bore) | R40.7 |
 | Air gap to stator | **0.63 mm** at the block centre, ≈0.70 mm at its edges | **0.70 mm** |
 | Centre-to-centre spacing | 12.857° (360 / 28), ≈9.4 mm | same |
 | Gap between neighbours | **4.13 mm** at the inner edge, **4.58 mm** at the outer edge | **1.37 mm** at R40.7, **1.47 mm** at R43.7 |
-| Polarity | Alternating N / S facing the centre; both blocks of a pole the same way | Alternating N / S |
+| Polarity | Alternating N / S facing the centre | Alternating N / S |
+
+**Test magnet changed 2026-11-25:** 28 × 20×5×2 (one per pole) replaces 56 × 10×5×2 (two per pole). Same width, thickness and air gap; half as many to glue.
 
 **Width is the limit.** 28 poles leave ≈9.4 mm per pole, so a test block must be **≤ about 8 mm wide** (5 mm is the design value; wider flat blocks also sit closer to the stator in the middle). Blocks longer than 20 mm stick out past the stack. For example, **25 × 10 × 2 mm bars do not fit**: 28 × 10 mm is more than the ≈268 mm bore circumference. Don't cut neodymium to size (brittle, flammable dust, heat demagnetises it).
 
@@ -118,7 +120,7 @@ The test ring sits on the jig's base, centred by an outer lip. 28 fingers (≈4.
 1. Print in PLA or PETG, 0.2 mm layers, fingers upright. Test-fit one block: it should drop into a pocket with a slight gap.
 2. Wipe the fingers with a thin film of wax or petroleum jelly so epoxy doesn't stick to them.
 3. Put the ring on the jig (it centres on the lip). Find each block's inner face polarity with a marked reference magnet or a compass.
-4. Fill pockets one at a time, alternating N / S as marked: a dab of epoxy on the back face, then slide the block down the pocket against the ring. Insert the second block of each pocket on top of the first; the two repel slightly, so hold it for a few seconds.
+4. Fill pockets one at a time, alternating N / S as marked: a dab of epoxy on the back face, then slide the block down the pocket against the ring. One 20 mm block fills each pocket.
 5. Check every pocket's polarity before the epoxy sets. Let it cure fully (24 h for slow epoxy).
 6. Push the jig out axially from below. Clean any squeeze-out off the magnets' inner faces: it would eat into the 0.63 mm air gap.
 

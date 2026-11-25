@@ -39,6 +39,7 @@ Status: **Phase 1 not started.** These are design files. Nothing has been cut, b
 | `step/bldc_v1_test_stand_base_plate_130x130x6.step` | Base plate: shaft clearance hole, 4 × M4 counterbored on 44 PCD, wire hole, 4 × Ø5.5 corner holes | 1 |
 | `step/bldc_v1_shaft_10x49.5_steel.step` | Ø10 × 49.5 mm steel shaft with DIN 471 groove and set-screw flat | 1 |
 | `step/bldc_v1_spacer_14x10x8.step` | Spacer between the upper bearing inner race and the bell | 1 |
+| `step/bldc_v1_magnet_jig_test_rotor_28pocket_print.step` | **Magnet gluing jig** for the N35 test rotor: 28 pockets with N / S marks, removable after the epoxy cures (print in PLA or PETG) | 1 |
 | `step/bldc_v1_bearing_6000ZZ_10x26x8.step`, `step/bldc_v1_circlip_DIN471_10.step` | Bought parts, for reference | 2, 1 |
 
 ## Key dimensions (from `scripts/params.py`)
@@ -68,6 +69,19 @@ Status: **Phase 1 not started.** These are design files. Nothing has been cut, b
 | Bell | Ø98.4, ring pocket Ø93.6, lip Ø88 under the ring, top disc 3.5 mm at z 25.5, boss Ø20 × 7.5 with radial M3 (tap Ø2.5) |
 | Base plate | 130 × 130 × 6 (top at z −12): Ø20 centre hole, 4 × M4 counterbored, Ø8 wire hole at x = 33, 4 × Ø5.5 corner holes |
 | Clearances (checked by `scripts/check_test_stand.py`) | Magnets–stator 0.63 mm (test) / 0.70 mm (final); bell–winding end turns ≥ 3.5 mm (end turns assumed 4 mm); rotor–base plate 9.5 mm; no overlapping parts |
+
+## Magnet gluing jig (test rotor)
+
+![Magnet jig](previews/bldc_v1_magnet_jig_top_view.png)
+
+The test ring sits on the jig's base, centred by an outer lip. 28 fingers (≈4.1 mm wide, 19 mm tall) rise inside the ring and leave a 5.2 mm pocket per pole, so neighbouring magnets can't snap together while the epoxy cures. Each pocket has a raised N or S mark: it tells you which pole must face the **centre** of the rotor.
+
+1. Print in PLA or PETG, 0.2 mm layers, fingers upright. Test-fit one block: it should drop into a pocket with a slight gap.
+2. Wipe the fingers with a thin film of wax or petroleum jelly so epoxy doesn't stick to them.
+3. Put the ring on the jig (it centres on the lip). Find each block's inner face polarity with a marked reference magnet or a compass.
+4. Fill pockets one at a time, alternating N / S as marked: a dab of epoxy on the back face, then slide the block down the pocket against the ring. Insert the second block of each pocket on top of the first; the two repel slightly, so hold it for a few seconds.
+5. Check every pocket's polarity before the epoxy sets. Let it cure fully (24 h for slow epoxy).
+6. Push the jig out axially from below. Clean any squeeze-out off the magnets' inner faces: it would eat into the 0.63 mm air gap.
 
 ## Coordinates
 

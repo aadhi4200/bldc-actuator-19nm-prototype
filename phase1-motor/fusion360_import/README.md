@@ -10,6 +10,7 @@ All files are in **mm**. They are copies of the files in `../step` and `../dxf`;
 | `bldc_v1_test_stand_assembly_final_rotor.step` | Complete test stand with the final rotor |
 | `bldc_v1_test_stand_hub_51.95x30_nylon.step` | Hub, for printing |
 | `bldc_v1_rotor_bell_98.4_nylon.step` | Rotor bell, for printing |
+| `bldc_v1_magnet_jig_test_rotor_28pocket_print.step` | Magnet gluing jig, for printing |
 | `bldc_v1_stator_plate_24N28P_80mm_ms1mm.step` | One lamination as a body |
 | `bldc_v1_stator_plate_24N28P_80mm_ms1mm_sketch.dxf` | Stator outline to insert as an editable sketch |
 

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BLDC v1 24N28P: how the rotor turns</title>
+<style>
+:root{--text-primary:#1f1f1e;--text-secondary:#6b6a65;--bg:#faf9f5;--border:rgba(0,0,0,.15)}
+@media (prefers-color-scheme:dark){:root{--text-primary:#ececea;--text-secondary:#a3a29c;--bg:#1f1f1e;--border:rgba(255,255,255,.18)}}
+body{margin:0;background:var(--bg);color:var(--text-primary);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:420px;margin:0 auto;padding:16px}
+h1{font-size:18px;font-weight:500;margin:0 0 4px}
+p{font-size:14px;line-height:1.6;color:var(--text-secondary);margin:0 0 12px}
+button{font:inherit;font-size:13px;padding:6px 12px;border:0.5px solid var(--border);border-radius:8px;background:transparent;color:var(--text-primary);cursor:pointer}
+.row{display:flex;align-items:center;gap:10px;margin:10px 0 4px}
+.lg{display:flex;gap:16px;justify-content:center;font-size:12px;color:var(--text-secondary);margin:4px 0 8px}
+.sw{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px;vertical-align:-1px}
+</style>
+</head>
+<body>
+<main>
+<h1>BLDC v1 (24N28P): how the rotor turns</h1>
+<p>Each of the 24 stator teeth is an electromagnet. Its polarity follows the three phase currents (winding AabBCcaABbcC × 2, currents timed for maximum torque as in FOC). The pattern stays slightly ahead of the 28 rotor magnets and pulls them around. The currents go through 14 cycles per rotor turn. Simplified: the main magnetic effect only, not a field simulation.</p>
+<div style="display:flex;justify-content:center"><canvas id="m" width="340" height="340" style="width:340px;height:340px"></canvas></div>
+<div class="lg"><span><span class="sw" style="background:#E24B4A"></span>N pole</span><span><span class="sw" style="background:#378ADD"></span>S pole</span><span>teeth = electromagnets, outer ring = magnets</span></div>
+<canvas id="w" width="340" height="90" style="width:340px;height:90px;display:block;margin:0 auto"></canvas>
+<div class="row">
+<button id="pp">Pause</button>
+<label style="font-size:13px;color:var(--text-secondary)" for="sp">Speed</label>
+<input type="range" id="sp" min="1" max="20" step="1" value="5" style="flex:1">
+<label style="font-size:13px;color:var(--text-secondary);display:flex;align-items:center;gap:4px"><input type="checkbox" id="lb">Labels</label>
+</div>
+<div id="info" style="font-size:12px;color:var(--text-secondary);text-align:center"></div>
+<p style="margin-top:16px;font-size:12px">Labels: A, B, C = coils wound clockwise; a, b, c = counter-clockwise. Geometry from <code>scripts/params.py</code> (80 mm stator, 0.7 mm air gap, 85 % pole arc).</p>
+</main>
+<script>
+const P="AabBCcaABbcC".repeat(2),NS=24,NP=28,PP=14;
+const R={bore:26,yoke:29.5,shoe:37.7,od:40,mi:40.7,mo:43.7,ro:46.7};
+const ph=t=>({A:0,B:1,C:2})[t.toUpperCase()],sg=t=>t===t.toUpperCase()?1:-1;
+const phi=k=>k*2*Math.PI/NS;
+let seq=[0,-1,1];
+function cur(p,te,d){return Math.cos(te+d+seq[p]*2*Math.PI/3)}
+function torque(d){let T=0;for(let n=0;n<60;n++){const tm=n/60*2*Math.PI/PP*2,te=PP*tm;for(let k=0;k<NS;k++){T+=cur(ph(P[k]),te,d)*sg(P[k])*Math.sin(PP*(phi(k)-tm))}}return T}
+let best=0,bd=0,bs=seq;for(const s of [[0,-1,1],[0,1,-1]]){seq=s;for(let i=0;i<72;i++){const d=i*5*Math.PI/180,t=torque(d);if(t>best){best=t;bd=d;bs=s}}}seq=bs;
+const c=document.getElementById('m'),x=c.getContext('2d'),wv=document.getElementById('w'),wx=wv.getContext('2d');
+const S=3.1,cx=170,cy=170,css=getComputedStyle(document.documentElement);
+const tc=()=>css.getPropertyValue('--text-primary').trim()||'#222',mc=()=>css.getPropertyValue('--text-secondary').trim()||'#777';
+function col(v){const a=Math.min(1,Math.abs(v));return v>=0?`rgba(226,75,74,${0.15+0.85*a})`:`rgba(55,138,221,${0.15+0.85*a})`}
+function pt(r,a){return[cx+r*S*Math.cos(a),cy-r*S*Math.sin(a)]}
+function arc(r1,r2,a1,a2){x.beginPath();const n=12;for(let i=0;i<=n;i++){const p=pt(r2,a1+(a2-a1)*i/n);i?x.lineTo(...p):x.moveTo(...p)}for(let i=n;i>=0;i--)x.lineTo(...pt(r1,a1+(a2-a1)*i/n));x.closePath()}
+let tm=0,run=true,last=performance.now();
+function draw(){const te=PP*tm;x.clearRect(0,0,340,340);
+x.fillStyle='rgba(136,135,128,0.35)';arc(R.mo,R.ro,0,2*Math.PI);x.fill();
+const hp=Math.PI/NP*0.85;for(let j=0;j<NP;j++){const a=tm+j*2*Math.PI/NP;arc(R.mi,R.mo,a-hp,a+hp);x.fillStyle=j%2?'#378ADD':'#E24B4A';x.fill()}
+x.fillStyle='rgba(136,135,128,0.45)';arc(R.bore,R.yoke,0,2*Math.PI);x.fill();
+const hw=2.4,op=Math.asin(1/R.od);
+for(let k=0;k<NS;k++){const a=phi(k),p=P[k],v=sg(p)*cur(ph(p),te,bd);
+const ca=Math.cos(a),sa=Math.sin(a);const q=(r,o)=>[cx+(r*ca-o*sa)*S,cy-(r*sa+o*ca)*S];
+const sh=Math.PI/NS-op;
+x.beginPath();x.moveTo(...q(R.yoke-0.3,-hw));x.lineTo(...q(R.shoe,-hw));x.lineTo(...pt(R.shoe,a-sh));x.lineTo(...pt(R.od,a-sh));
+for(let i=1;i<=8;i++)x.lineTo(...pt(R.od,a-sh+2*sh*i/8));x.lineTo(...pt(R.shoe,a+sh));x.lineTo(...q(R.shoe,hw));x.lineTo(...q(R.yoke-0.3,hw));x.closePath();
+x.fillStyle=col(v);x.fill();x.strokeStyle='rgba(0,0,0,0.25)';x.lineWidth=0.5;x.stroke();
+if(document.getElementById('lb').checked){x.fillStyle=tc();x.font='11px sans-serif';x.textAlign='center';x.textBaseline='middle';x.fillText(p,...pt(33,a))}}
+x.fillStyle=mc();x.font='11px sans-serif';x.textAlign='center';x.textBaseline='alphabetic';x.fillText('stator (fixed)',cx,cy-6);x.fillText('rotor turns',cx,cy+10);
+const mk=tm%(2*Math.PI);x.strokeStyle=tc();x.lineWidth=1.5;x.beginPath();x.moveTo(...pt(R.ro+0.5,mk));x.lineTo(...pt(R.ro+3.2,mk));x.stroke();
+wx.clearRect(0,0,340,90);const cols=['#E24B4A','#1D9E75','#7F77DD'],nm=['A','B','C'];
+wx.strokeStyle='rgba(136,135,128,0.4)';wx.beginPath();wx.moveTo(30,45);wx.lineTo(335,45);wx.stroke();
+for(let p=0;p<3;p++){wx.strokeStyle=cols[p];wx.lineWidth=1.5;wx.beginPath();for(let i=0;i<=300;i++){const e=te-2*Math.PI+i/300*4*Math.PI;const y=45-34*cur(p,e,bd);i?wx.lineTo(32+i,y):wx.moveTo(32,y)}wx.stroke();
+wx.fillStyle=cols[p];wx.font='11px sans-serif';wx.fillText(nm[p],6,14+p*13)}
+wx.strokeStyle=tc();wx.lineWidth=1;wx.beginPath();wx.moveTo(182,4);wx.lineTo(182,86);wx.stroke();
+wx.fillStyle=mc();wx.fillText('now',186,84);
+const deg=Math.round(((tm*180/Math.PI)%360+360)%360),ed=Math.round(((te*180/Math.PI)%360+360)%360);
+document.getElementById('info').textContent=`Rotor ${deg}° mechanical · ${ed}° electrical (14 electrical cycles per turn)`}
+function loop(n){const dt=(n-last)/1000;last=n;if(run)tm+=dt*document.getElementById('sp').value*0.012;draw();requestAnimationFrame(loop)}
+document.getElementById('pp').onclick=()=>{run=!run;document.getElementById('pp').textContent=run?'Pause':'Play'};
+requestAnimationFrame(loop);
+</script>
+</body>
+</html>

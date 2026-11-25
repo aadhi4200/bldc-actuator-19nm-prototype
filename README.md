@@ -2,6 +2,10 @@
 
 CAD and design files for a DIY robotic actuator: a custom BLDC motor, a 9:1 gearbox and an FOC controller, for precision robot arm joints. Developed in three phases, one folder each.
 
+![How the rotor turns: stator teeth become electromagnets that pull the 28 magnets around](phase1-motor/animation/bldc_v1_rotor_flux_animation.gif)
+
+*24N28P motor: each stator tooth's polarity follows the three phase currents and pulls the rotor magnets around. Interactive version: [`bldc_v1_rotor_flux_animation.html`](phase1-motor/animation/bldc_v1_rotor_flux_animation.html) (download and open in a browser).*
+
 | Phase | Folder | Status |
 |---|---|---|
 | 1. BLDC motor (stator, rotor, magnets, winding) | [phase1-motor/](phase1-motor/README.md) | Not started (v1 design files ready) |

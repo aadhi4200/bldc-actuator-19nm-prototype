@@ -14,7 +14,7 @@ Status: **Phase 1 not started.** These are design files. Nothing has been cut, b
 | `step/` | 3D models: single parts and two motor-core assemblies |
 | `fusion360_import/` | Ready-to-import copies for Fusion 360, plus [import steps](fusion360_import/README.md) |
 | `previews/` | Top views with the air-gap detail |
-| `animation/` | `bldc_v1_rotor_flux_animation.html`: how the teeth's changing magnetism turns the rotor (download and open in a browser) |
+| `animation/` | `bldc_v1_rotor_flux_animation.gif` (shown in the main README) and `.html` (interactive: download and open in a browser), built by `scripts/make_animation_gif.py` |
 | `scripts/` | Generator: every file above is rebuilt from `params.py` |
 
 ## Files

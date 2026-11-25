@@ -1,0 +1,4 @@
+cadquery
+numpy
+matplotlib
+cairosvg

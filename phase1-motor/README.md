@@ -5,6 +5,10 @@ CAD for the v1 motor of the DIY 9:1, 19 Nm BLDC actuator: a 24N28P outrunner wit
 Design record: [ADR 0002 in engineering-assistant](https://github.com/aadhi4200/engineering-assistant/blob/main/decisions/0002-bldc-v1-motor-design.md).
 Status: **Phase 1 not started.** These are design files. Nothing has been cut, built or measured.
 
+> **Actuator v2 supersedes the v1 test stand (2026-11-25).** The motor is now flipped and bolts to the cycloidal gearbox. The rotor is **one machined steel part** (back-iron cup + hub + Ø10 shaft): `act_v2_07_rotor_one_piece_steel` (final, Ø87.4 bore) and `act_v2_07b_rotor_one_piece_TEST_85.4bore` (test, Ø85.4 bore for the 10×5×2 N35 blocks), plus `act_v2_10_stator_hub` and `act_v2_11_back_plate`, all in [`phase2-gearbox/step/4_machined/`](../phase2-gearbox/README.md).
+> **Still current here:** stator plate DXFs (tabbed sheet and single plate), stator stack, magnet models and magnet spec, winding, key dimensions, previews and animation.
+> **Superseded, kept for reference:** the separate rotor rings, printed hub and bell, Ø10 × 49.5 shaft, spacer, base plate, the v1 test-stand assemblies and the magnet jig (made for the separate ring; the v2 rotor is a cup with a floor).
+
 ## Folders
 
 | Folder | Contents |

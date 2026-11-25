@@ -8,7 +8,7 @@ CAD and design files for a DIY robotic actuator: a custom BLDC motor, a 9:1 gear
 
 | Phase | Folder | Status |
 |---|---|---|
-| 1. BLDC motor (stator, rotor, magnets, winding) | [phase1-motor/](phase1-motor/README.md) | Not started (v1 design files ready) |
+| 1. BLDC motor (stator, rotor, magnets, winding) | [phase1-motor/](phase1-motor/README.md) | Not started. Stator files ready (tabbed sheet sent to Robu for a quote); rotor, stator hub and back plate are the v2 parts in phase2-gearbox |
 | 2. 9:1 cycloidal gearbox (actuator v2, flipped motor) | [phase2-gearbox/](phase2-gearbox/README.md) | Not built (v2 CAD, drawings and clearance checks ready) |
 | 3. FOC controller (ODrive-class board first, custom PCB later) | [phase3-foc-controller/](phase3-foc-controller/README.md) | Not started |
 

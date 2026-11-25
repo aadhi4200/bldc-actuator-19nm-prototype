@@ -74,6 +74,22 @@ Status: **Phase 1 not started.** These are design files. Nothing has been cut, b
 | Test rotor | 56 × 10×5×2 mm N35 blocks, 2 per pole axially; ring 93.4 × 85.4 × 20 mm |
 | Air gap | 0.70 mm (final arcs); 0.63 mm minimum with the flat test blocks, whose corners touch the ring bore |
 
+## Magnets: what to buy and how they sit
+
+| | Test rotor | Final rotor |
+|---|---|---|
+| Magnet | **10 × 5 × 2 mm N35 block** (length × width × thickness) | Arc, **N48SH** (N42SH minimum), custom order |
+| Quantity | **56** (2 per pole, stacked axially) + spares: buy 60–100 | **28** + spares |
+| Orientation | 10 mm along the motor axis, 5 mm around the circle, 2 mm radial (magnetised through the 2 mm) | 18 mm along the axis, 10.93° of arc (≈8.3 mm), 3 mm radial (magnetised radially) |
+| Ring / bore | Ø85.4 | Ø87.4 |
+| Inner face | ≈R40.63 at the block centre (flat block in a round bore) | R40.7 |
+| Air gap to stator | **0.63 mm** at the block centre, ≈0.70 mm at its edges | **0.70 mm** |
+| Centre-to-centre spacing | 12.857° (360 / 28), ≈9.4 mm | same |
+| Gap between neighbours | **4.13 mm** at the inner edge, **4.58 mm** at the outer edge | **1.37 mm** at R40.7, **1.47 mm** at R43.7 |
+| Polarity | Alternating N / S facing the centre; both blocks of a pole the same way | Alternating N / S |
+
+**Width is the limit.** 28 poles leave ≈9.4 mm per pole, so a test block must be **≤ about 8 mm wide** (5 mm is the design value; wider flat blocks also sit closer to the stator in the middle). Blocks longer than 20 mm stick out past the stack. For example, **25 × 10 × 2 mm bars do not fit**: 28 × 10 mm is more than the ≈268 mm bore circumference. Don't cut neodymium to size (brittle, flammable dust, heat demagnetises it).
+
 ## Test stand (section)
 
 ![Test stand section](previews/bldc_v1_test_stand_section.png)

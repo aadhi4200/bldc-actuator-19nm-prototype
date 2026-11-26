@@ -4,7 +4,7 @@ The test ring sits on the jig's base, centred by an outer lip. 28 fingers rise i
 one pocket per pole, so neighbouring magnets cannot snap together while the epoxy cures. N / S marks on the
 base show which way each pocket's inner face must point. After curing, push the jig out axially.
 
-Usage (from the repo root): python phase1-motor/scripts/build_magnet_jig.py
+Usage (from the repo root): python phase1-motor/n52/scripts/build_magnet_jig.py
 Coordinates match the other parts: ring z = -1..19, magnets z = -1..19.
 """
 import math

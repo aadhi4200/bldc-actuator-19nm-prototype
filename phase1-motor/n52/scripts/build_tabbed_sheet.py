@@ -3,7 +3,7 @@
 Tabs sit on the tips of teeth 7 (+Y) and 19 (-Y) of each plate, away from the bore notches
 (teeth 1 and 13). Break the plates out after delivery, file the stubs, then true the stack OD.
 
-Usage: python phase1-motor/scripts/build_tabbed_sheet.py
+Usage: python phase1-motor/n52/scripts/build_tabbed_sheet.py
 """
 import math
 from pathlib import Path

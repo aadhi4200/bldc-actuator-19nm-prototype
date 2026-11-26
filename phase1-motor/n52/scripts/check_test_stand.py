@@ -1,4 +1,4 @@
-"""Check the test stand: valid solids, no overlaps, rotor-to-stator and end-turn clearances. Run from phase1-motor/scripts."""
+"""Check the test stand: valid solids, no overlaps, rotor-to-stator and end-turn clearances. Run from phase1-motor/n52/scripts."""
 import itertools, cadquery as cq
 import build_test_stand as T
 parts, bu, bl, stack, ring_t, blocks = T.main()

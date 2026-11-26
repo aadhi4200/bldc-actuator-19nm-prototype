@@ -1,7 +1,7 @@
 """Phase 1 motor test stand: hub, 2 x 6000ZZ, shaft, spacer, rotor bell, circlip, base plate,
 plus full assemblies with the test and final rotors.
 
-Usage (from the repo root):  python phase1-motor/scripts/build_test_stand.py
+Usage (from the repo root):  python phase1-motor/n52/scripts/build_test_stand.py
 Coordinates match build_all.py: mm, Z = motor axis, origin = centre of the stator stack's bottom face.
 """
 import cadquery as cq

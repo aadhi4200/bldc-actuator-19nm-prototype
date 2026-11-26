@@ -1,6 +1,6 @@
 """BLDC actuator v1 motor core: single source of truth for all dimensions (mm, degrees).
 
-Change a value here and re-run `python phase1-motor/scripts/build_all.py` to regenerate every DXF and STEP file.
+Change a value here and re-run `python phase1-motor/n52/scripts/build_all.py` to regenerate every DXF and STEP file.
 Values come from the v1 plan (24N28P outrunner, 0.7 mm air gap). They are design values, not measured parts.
 """
 

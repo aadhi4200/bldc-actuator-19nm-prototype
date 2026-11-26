@@ -1,4 +1,4 @@
-"""Draw previews/bldc_v1_magnet_jig_top_view.png. Run from phase1-motor/scripts."""
+"""Draw previews/bldc_v1_magnet_jig_top_view.png. Run from phase1-motor/n52/scripts."""
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt

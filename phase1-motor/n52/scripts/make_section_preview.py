@@ -1,4 +1,4 @@
-"""Draw previews/bldc_v1_test_stand_section.png (cut through the motor axis). Run from phase1-motor/scripts."""
+"""Draw previews/bldc_v1_test_stand_section.png (cut through the motor axis). Run from phase1-motor/n52/scripts."""
 import matplotlib; matplotlib.use("Agg"); import matplotlib.pyplot as plt
 from matplotlib.patches import Polygon
 import cadquery as cq

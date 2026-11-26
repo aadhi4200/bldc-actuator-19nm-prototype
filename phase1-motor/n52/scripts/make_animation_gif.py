@@ -4,7 +4,7 @@ Same model as animation/bldc_v1_rotor_flux_animation.html: each tooth's polarity
 currents timed for maximum torque. One electrical cycle (360/14 deg of rotor turn) repeats exactly, so the GIF
 loops seamlessly.
 
-Usage: python phase1-motor/scripts/make_animation_gif.py
+Usage: python phase1-motor/n52/scripts/make_animation_gif.py
 """
 import math
 from pathlib import Path
